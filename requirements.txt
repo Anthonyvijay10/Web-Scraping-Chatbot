@@ -1,8 +1,8 @@
-fastapi 
-uvicorn 
-beautifulsoup4 
-requests 
-python-dotenv 
-faiss-cpu 
-sentence-transformers 
-transformers
+fastapi
+uvicorn
+beautifulsoup4
+requests
+pymilvus
+python-dotenv
+sentence-transformers
+google-generativeai
