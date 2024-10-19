@@ -49,11 +49,7 @@ Before you begin, ensure you have the following installed:
 
 ## Environment Setup
 
-1. **Create a `.env` file:**
-   Copy the `.env.example` file to `.env` and fill in the required environment variables:
-   ```bash
-   cp .env.example .env
-   ```
+1. **`.env` file:**
 
    Make sure to set the `GOOGLE_API_KEY` with your actual Google API key.
 
@@ -68,7 +64,8 @@ Before you begin, ensure you have the following installed:
 2. **Run the FastAPI application:**
    In a new terminal (with the virtual environment activated), run:
    ```bash
-   uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+   cd app
+   uvicorn main:app --reload
    ```
 
 3. **Access the API:**
