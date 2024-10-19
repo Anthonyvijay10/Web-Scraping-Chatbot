@@ -1,74 +1,104 @@
-Milvus Wikipedia QA System
-This project implements a question-answering system using Wikipedia content, Milvus vector database, and the Gemini AI model.
-Prerequisites
+# Wikipedia QA System
 
-Docker and Docker Compose
-Python 3.8+
-Google Cloud account with Gemini API access
+A QA system that utilizes Wikipedia data, Milvus for vector storage, and Gemini AI for generating answers to user queries.
 
-Setup
+## Table of Contents
 
-Clone the repository:
-Copygit clone https://github.com/yourusername/milvus-wiki-qa.git
-cd milvus-wiki-qa
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Endpoints](#api-endpoints)
+- [Docker Setup](#docker-setup)
+- [Environment Variables](#environment-variables)
+- [Contributing](#contributing)
+- [License](#license)
 
-Create a virtual environment and activate it:
-Copypython -m venv venv
-source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+## Features
 
-Install the required packages:
-Copypip install -r requirements.txt
+- Load Wikipedia page data and store it in Milvus.
+- Query the loaded data to get answers using Gemini AI.
+- FastAPI-based RESTful API for easy interaction.
 
-Create a .env file in the project root and add your Google API key:
-CopyGOOGLE_API_KEY=your_google_api_key_here
+## Prerequisites
 
-Start the Milvus services using Docker Compose:
-Copydocker-compose up -d
+Before you begin, ensure you have met the following requirements:
 
-Wait for a few minutes to ensure all services are up and running.
+- Python 3.7 or higher
+- Docker and Docker Compose (for running Milvus)
+- An active Google API key for Gemini AI
 
-Running the Application
+## Installation
 
-Start the FastAPI application:
-Copyuvicorn app.main:app --reload
+1. **Clone the repository:**
 
-The API will be available at http://localhost:8000.
+   ```bash
+   git clone https://github.com/yourusername/wikipedia-qa-system.git
+   cd wikipedia-qa-system
+   ```
 
-API Endpoints
-Load Data
+2. **Install the required Python packages:**
 
-URL: /load
-Method: POST
-Body: {"url": "https://en.wikipedia.org/wiki/Artificial_intelligence"}
+   You can create a virtual environment and install the dependencies listed in `requirements.txt`:
 
-Query Data
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+   pip install -r requirements.txt
+   ```
 
-URL: /query
-Method: POST
-Body: {"query": "What is artificial intelligence?"}
+3. **Set up the environment variables:**
 
-Usage Example
+   Create a `.env` file in the `app` directory and add your Milvus and Google API key:
 
-Load data from a Wikipedia page:
-Copycurl -X POST "http://localhost:8000/load" -H "Content-Type: application/json" -d '{"url": "https://en.wikipedia.org/wiki/Artificial_intelligence"}'
+   ```plaintext
+   MILVUS_HOST=localhost
+   MILVUS_PORT=19530
+   GOOGLE_API_KEY=your_google_api_key_here
+   ```
 
-Query the loaded data:
-Copycurl -X POST "http://localhost:8000/query" -H "Content-Type: application/json" -d '{"query": "What is artificial intelligence?"}'
+## Usage
 
+1. **Start the Milvus service using Docker:**
 
-Shutting Down
-To stop the Milvus services:
-Copydocker-compose down
-Troubleshooting
+   ```bash
+   docker-compose up -d
+   ```
 
-If you encounter issues connecting to Milvus, ensure that all services are running:
-Copydocker-compose ps
+2. **Run the FastAPI application:**
 
-Check the logs of individual services:
-Copydocker-compose logs milvus-standalone
+   ```bash
+   uvicorn app.main:app --host 0.0.0.0 --port 8000
+   ```
 
+3. **Access the API documentation:**
 
-Contributing
-Feel free to submit issues or pull requests if you have suggestions for improvements or encounter any problems.
-License
-This project is licensed under the MIT License.
+   Open your browser and navigate to `http://localhost:8000/docs` to view the interactive API documentation.
+
+## API Endpoints
+
+- **Load Wikipedia Page Data**
+  - **Endpoint:** `POST /load`
+  - **Request Body:**
+    ```json
+    {
+      "url": "https://en.wikipedia.org/wiki/Lionel_Messi"
+    }
+    ```
+
+- **Query the Loaded Data**
+  - **Endpoint:** `POST /query`
+  - **Request Body:**
+    ```json
+    {
+      "query": "What is the name of the club Lionel Messi currently plays for?"
+    }
+    ```
+
+- **Root Endpoint**
+  - **Endpoint:** `GET /`
+  - **Response:** Welcome message.
+
+## Docker Setup
+
+This project uses Docker to run Milvus. The `docker-compose.yml` file is included to set up the necessary services. To start the services, run:
