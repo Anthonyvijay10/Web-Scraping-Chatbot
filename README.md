@@ -87,14 +87,14 @@ Before you begin, ensure you have the following installed:
 
  ### Stopping the Application
 
-1. **Deactivate the Virtual Environment**:
-   ```bash
-   deactivate
-   ```
-
-2. **Stop the Docker Containers**:
+ 1. **Stop the Docker Containers**:
    ```bash
    docker-compose down
+   ```
+
+2. **Ctrl+C to stop the FastAPI and to deactivate the Virtual Environment**:
+   ```bash
+   deactivate
    ```
 
 ## Contributing
