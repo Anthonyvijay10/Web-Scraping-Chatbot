@@ -85,14 +85,16 @@ Before you begin, ensure you have the following installed:
   - `GET /`
   - Returns a welcome message.
 
-## Docker Setup
+ ### Stopping the Application
 
-This project uses Docker to run Milvus. The `docker-compose.yml` file is included for easy setup. 
-
-1. **Ensure Docker is installed and running.**
-2. **Run the following command to start the services:**
+1. **Deactivate the Virtual Environment**:
    ```bash
-   docker-compose up -d
+   deactivate
+   ```
+
+2. **Stop the Docker Containers**:
+   ```bash
+   docker-compose down
    ```
 
 ## Contributing
