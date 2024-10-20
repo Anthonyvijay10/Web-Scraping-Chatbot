@@ -23,8 +23,8 @@ Before you begin, ensure you have the following installed:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/Anthonyvijay10/Wikipedia-Scraping-Chatbot.git
+   cd Wikipedia-Scraping-Chatbot
    ```
 
 2. **Create a virtual environment:**
