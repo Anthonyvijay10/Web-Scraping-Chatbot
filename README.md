@@ -1,4 +1,4 @@
-# Wikipedia QA System
+# Web QA System
 
 This project is a QA system that utilizes Wikipedia data, Milvus for vector storage, and Gemini AI for generating answers. 
 
